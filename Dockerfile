@@ -36,10 +36,14 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
     docker-php-ext-install gd \
                            intl \
                            pdo_mysql \
+                           pdo_pgsql \
                            mbstring \
                            mcrypt \
                            opcache \
                            zip \
                            bcmath \
                            soap
+RUN pecl install amqp \
+    && docker-php-ext-enable amqp
+
 RUN apt-get install -yqq git
